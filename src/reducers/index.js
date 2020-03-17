@@ -1,4 +1,5 @@
 import { createStore } from 'redux'
+import {  ADD_ITEM, REMOVE_ITEM } from '../actions/index'
 
 export const initialstate = {
   additionalPrice: 0,
@@ -18,6 +19,28 @@ export const initialstate = {
 };
 
 export const reducer = (state = initialstate, action) => {
+  switch (action.type) {
+    case ADD_ITEM:
+      return{
+        ...state,
+        additionalPrice: state.additionalPrice + action.payload.price,
+        car: {
+          ...state.car,
+          features: [...state.car.features, action.payload]
+        }
+      }
+    case REMOVE_ITEM:
+      return {
+        ...state,
+        additionalPrice: state.additionalPrice - action.payload.price,
+        car: {
+          ...state.car,
+          features: state.car.features.filter(feature => feature.id !== action.payload.id)
+        }
+      }
+    default:
+      return state  
+  }
   return state
 }
 
