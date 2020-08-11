@@ -1,11 +1,13 @@
 import React from "react";
 import { removeItem } from "../actions/index";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 const AddedFeature = (props) => {
+  const dispatch = useDispatch();
   console.log("hei", props);
   const removeFeature = (item) => {
-    props.removeItem(item);
+    // props.removeItem(item);
+    dispatch({ type: removeFeature, payload: item });
   };
   return (
     <li>
