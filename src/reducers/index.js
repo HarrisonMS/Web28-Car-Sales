@@ -41,7 +41,6 @@ export const reducer = (state = initialstate, action) => {
     default:
       return state  
   }
-  return state
 }
 
 export const store = createStore(reducer)
